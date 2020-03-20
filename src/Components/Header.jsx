@@ -29,24 +29,39 @@ class Header extends React.Component {
     }
 
     handleCheck = (event) => {
-        this.setState={
-            inputArr: this.state.inputArr.filter()
+        if (event.target.checked) {
+            event.target.value = 'on';
+            const targetVal = document.getElementById(event.target.id + 2).innerText;
+            document.getElementById(event.target.id + 2).innerHTML = (`<s>` + targetVal + `</s>`)
+        }
+        else if (!event.target.checked) {
+            event.target.value = 'off'
+            document.getElementById(event.target.id + 2).innerText = event.target.id
+            console.log(event.target.value)
+
         }
     }
 
     render() {
         return (
-            <div>
-                <input type='text' onChange={this.handleInputChange} />
-                <p onClick={this.handleAddClick} className='button'>Add item to list</p>
+            <div className='mainDiv'>
+                A simple to do list
+                {/*<h3 className='header'>A simple to do list</h3>*/}
+                <div className='inputDiv'>
 
-                {this.state.inputArr.map((item) =>
-                <p key={item}>
-                    <input type='checkbox' id={item} onCheck={this.handleCheck} /> 
-                    {item}
-                    <span id={item} onClick={this.handleDelete}>  X  </span>
-                </p>)
-                }
+                    <input className='inputField' type='text' onChange={this.handleInputChange} />
+                    <p onClick={this.handleAddClick} className='button'>Add item to list</p>
+                </div>
+                <div className='items'>
+                    {this.state.inputArr.map((item) =>
+                        <div key={item} id={item + 1} className='itemBlock'>
+                            <input type='checkbox' id={item} value='off' onClick={this.handleCheck} className='checkBox' />
+                            <span id={item + 2} className='item'>{item}</span>
+                            <span id={item} onClick={this.handleDelete} className='deleteItem'>  X  </span>
+                        </div>)
+                    }
+                </div>
+
 
             </div>
         )
