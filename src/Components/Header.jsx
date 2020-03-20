@@ -46,7 +46,7 @@ class Header extends React.Component {
         return (
             <div className='mainDiv'>
                 A simple to do list
-                {/*<h3 className='header'>A simple to do list</h3>*/}
+               
                 <div className='inputDiv'>
 
                     <input className='inputField' type='text' onChange={this.handleInputChange} />
